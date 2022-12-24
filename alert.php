@@ -66,8 +66,7 @@ if ($input_json === false OR $input_json === null) {
 
 
         # Creating text message
-        $text_message = $status.' '.$alert_text;
-        $text_message .= $alert_text.PHP_EOL.PHP_EOL;
+        $text_message = $status.' '.$alert_text.PHP_EOL.PHP_EOL;
         $text_message .= implode(PHP_EOL, $add_info).PHP_EOL;
         $text_message .= implode(' / ', $links);
 
