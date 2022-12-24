@@ -12,6 +12,11 @@ require_once 'tg.php'
 $input = @file_get_contents('php://input');
 $input_yaml = @json_decode($input);
 
+# If debug is enabled, saving dump
+if ($settings['debug']) {
+    file_put_contents('dumps/'.date('d_m_Y_H_i_s').'.log', $input);
+}
+
 if ($input_yaml === false OR $input_yaml === null) {
     $message[] = 'Alert received, but JSON-data couldn\'t be parsed';
     $message[] = '<code>'.$input.'</code>';
