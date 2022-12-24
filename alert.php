@@ -6,7 +6,7 @@ $settings = yaml_parse_file('settings.yaml') or die('Error parsing settings.yaml
 define('BOT_TOKEN', $settings['telegram_token']);
 
 # TG library
-require_once 'tg.php'
+require_once 'tg.php';
 
 # Parsing incoming event
 $input = @file_get_contents('php://input');
