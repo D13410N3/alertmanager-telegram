@@ -72,7 +72,11 @@ if ($input_json === false OR $input_json === null) {
 
 
         # Finding receivers
-        $receivers = array_intersect($alert['labels'], $settings['receivers']);
+        foreach ($alert['labels'] as $key => $value) {
+            if (isset($settings['receivers'][$key])) {
+                $receivers[$key] = $settings['receivers'][$key];
+            }
+        }
         # Overriding - adding default primary receiver
         $receivers['primary'] = $settings['receivers']['primary'];
 
