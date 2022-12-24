@@ -10,19 +10,19 @@ require_once 'tg.php';
 
 # Parsing incoming event
 $input = @file_get_contents('php://input');
-$input_yaml = @json_decode($input);
+$input_json = @json_decode($input, true);
 
 # If debug is enabled, saving dump
 if ($settings['debug']) {
     file_put_contents('dumps/'.date('d_m_Y_H_i_s').'.log', $input);
 }
 
-if ($input_yaml === false OR $input_yaml === null) {
+if ($input_json === false OR $input_json === null) {
     $message[] = 'Alert received, but JSON-data couldn\'t be parsed';
     $message[] = '<code>'.$input.'</code>';
     sendMessage($settings['receivers']['primary'], implode(PHP_EOL, $message), 'HTML');
 } else {
-    foreach ($input_yaml['alerts'] as $key => $alert) {
+    foreach ($input_json['alerts'] as $key => $alert) {
         $message = [];
         # Checking alert status
         $alert_status = $alert['status'] == 'resolved' ? '🟢' : '';
