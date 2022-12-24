@@ -13,7 +13,7 @@ $input = @file_get_contents('php://input');
 $input_json = @json_decode($input, true);
 
 # If debug is enabled, saving dump
-if (isset($settings['debug']) {
+if (isset($settings['debug'])) {
     file_put_contents('dumps/'.date('d_m_Y_H_i_s').'.log', $input);
 }
 
