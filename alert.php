@@ -1,6 +1,6 @@
 <?php
 # Loading configuration file
-$settings = yaml_parse_file('settings.yaml') or die('Error parsing settings.yaml');
+$settings = @yaml_parse_file('settings.yaml') or die('Error parsing settings.yaml');
 
 # Defining TG bot token
 define('BOT_TOKEN', $settings['telegram']['token']);
