@@ -62,11 +62,11 @@ if ($input_json === false OR $input_json === null) {
         foreach ($alert['labels'] as $key => $value) {
             $labels[] = '"'.$key.'"="'.$value.'"';
         }
-        $labels_string = '{'.urlencode(implode(',', $labels)).'}';
+        $labels_string = '{'.implode(',', $labels).'}';
 
         # Creating external links
         $links['prometheus'] = '<a href="'.$alert['generatorURL'].'">Source</a>';
-        $links['alertmanager'] = '<a href="'.$settings['links']['alertmanager'].'/#/silences/new?filter='.$labels_string.'">Silence</a>';
+        $links['alertmanager'] = '<a href="'.$settings['links']['alertmanager'].'/#/silences/new?filter='.urlencode($labels_string).'">Silence</a>';
         if (isset($settings['links']['grafana'])) {
             $links['grafana'] = '<a href="'.$settings['links']['grafana'].'">Grafana</a>';
         }
