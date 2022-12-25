@@ -60,7 +60,7 @@ if ($input_json === false OR $input_json === null) {
         # Formatting labels to a specific string
         $labels = [];
         foreach ($alert['labels'] as $key => $value) {
-            $labels[] = '"'.$key.'"="'.$value.'"';
+            $labels[] = $key.'="'.$value.'"';
         }
         $labels_string = '{'.implode(',', $labels).'}';
 
