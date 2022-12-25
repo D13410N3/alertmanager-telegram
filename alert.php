@@ -25,8 +25,8 @@ if ($input_json === false OR $input_json === null) {
     foreach ($input_json['alerts'] as $key => $alert) {
         $message = [];
         # Checking alert status
-        $alert_status = $alert['status'] == 'resolved' ? '🟢' : '';
-        if (empty($alert_status)) {
+        $status = $alert['status'] == 'resolved' ? '🟢' : '';
+        if (empty($status)) {
             switch ($alert['labels']['severity']) {
                 case 'info':        $status = '🔵';      break;
                 case 'warning':     $status = '🟡';      break;
