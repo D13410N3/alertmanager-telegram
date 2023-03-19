@@ -25,6 +25,11 @@ if ($input_json === false OR $input_json === null) {
     foreach ($input_json['alerts'] as $key => $alert) {
         $message = [];
         # Checking alert status
+        # Checking if alert is "resolved" and annotation "do_not_send_resolved" is set
+        if ($alert['status'] == 'resolved' && iseet($alert['annotations']['do_not_send_resolved'])) {
+            continue;
+        }
+
         $status = $alert['status'] == 'resolved' ? '🟢' : '';
         if (empty($status)) {
             switch ($alert['labels']['severity']) {
@@ -55,6 +60,11 @@ if ($input_json === false OR $input_json === null) {
         }
         if (!empty($alert['labels']['target_url'])) {
             $add_info[] = 'Target URL: '.$alert['labels']['target_url'];
+        }
+
+        # Sign
+        if (isset($settings['sign'])) {
+            $add_info[] = $settings['sign']
         }
 
         # Formatting labels to a specific string
