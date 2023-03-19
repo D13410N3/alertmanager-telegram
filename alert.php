@@ -64,7 +64,7 @@ if ($input_json === false OR $input_json === null) {
 
         # Sign
         if (isset($settings['sign'])) {
-            $add_info[] = $settings['sign']
+            $add_info[] = $settings['sign'];
         }
 
         # Formatting labels to a specific string
