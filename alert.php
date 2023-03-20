@@ -26,7 +26,7 @@ if ($input_json === false OR $input_json === null) {
         $message = [];
         # Checking alert status
         # Checking if alert is "resolved" and annotation "do_not_send_resolved" is set
-        if ($alert['status'] == 'resolved' && iseet($alert['annotations']['do_not_send_resolved'])) {
+        if ($alert['status'] == 'resolved' && isset($alert['annotations']['do_not_send_resolved'])) {
             continue;
         }
 
